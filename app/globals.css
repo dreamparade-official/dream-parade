@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --red: #CC0000;
+    --dark: #0A0A0A;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans bg-zinc-950 text-white antialiased;
+  }
+
+  ::selection {
+    background: rgba(204, 0, 0, 0.35);
+    color: white;
+  }
+}
+
+@layer components {
+  /* ラベル（セクション上部の小見出し） */
+  .section-label {
+    @apply text-red-500 text-xs font-bold tracking-widest2 uppercase font-heading;
+  }
+
+  /* セクション大見出し（ダーク背景用） */
+  .section-heading {
+    @apply font-heading font-black text-3xl md:text-5xl text-white tracking-tight leading-none;
+  }
+
+  /* セクション大見出し（ライト背景用） */
+  .section-heading-dark {
+    @apply font-heading font-black text-3xl md:text-5xl text-zinc-950 tracking-tight leading-none;
+  }
+
+  /* プライマリボタン（赤・シャープ） */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+           px-8 py-4 bg-red-500 text-white font-bold font-heading
+           text-xs tracking-widest2 uppercase
+           transition-colors duration-150
+           hover:bg-red-600 active:bg-red-700;
+  }
+
+  /* アウトラインボタン（白枠・ダーク背景用） */
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2
+           px-8 py-4 border border-zinc-600 text-white font-bold font-heading
+           text-xs tracking-widest2 uppercase
+           transition-all duration-150
+           hover:border-white hover:bg-white/5 active:bg-white/10;
+  }
+
+  /* アウトラインボタン（黒枠・ライト背景用） */
+  .btn-outline-dark {
+    @apply inline-flex items-center justify-center gap-2
+           px-8 py-4 border border-zinc-900 text-zinc-900 font-bold font-heading
+           text-xs tracking-widest2 uppercase
+           transition-all duration-150
+           hover:bg-zinc-950 hover:text-white;
+  }
+
+  /* フォーム入力（ダーク） */
+  .form-input {
+    @apply w-full px-4 py-3.5 bg-zinc-900 border border-zinc-700
+           text-white text-sm placeholder-zinc-500
+           focus:outline-none focus:border-red-500
+           transition-colors duration-200 rounded-none;
+  }
+
+  /* フォームラベル */
+  .form-label {
+    @apply block text-xs font-bold text-zinc-400 mb-2 tracking-widest uppercase font-heading;
+  }
+}
+
+@keyframes loadingRise {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes loadingTextRise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+    letter-spacing: 0.35em;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: 0.22em;
+  }
+}
