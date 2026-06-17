@@ -19,7 +19,6 @@ export const SITE = {
 export const NAV_LINKS = [
   { label: "タレント", href: "/talents" },
   { label: "オーディション", href: "/audition" },
-  { label: "出演依頼", href: "/contact" },
 ] as const;
 
 // --- タレントカテゴリ ---
