@@ -1,18 +1,28 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-const FROM = "onboarding@resend.dev";
+const FROM = "DreamParade <info@dream-parade.website>";
 const TO   = "info@dream-parade.website";
 
 export async function POST(request: Request) {
+  const apiKey = process.env.RESEND_API_KEY;
+  console.log("[api/audition] RESEND_API_KEY set:", !!apiKey);
+
+  if (!apiKey) {
+    console.error("[api/audition] RESEND_API_KEY is not set");
+    return NextResponse.json({ error: "Server configuration error" }, { status: 500 });
+  }
+
   try {
-    const { name, age, email, phone, genre, pr } = await request.json();
+    const body = await request.json();
+    console.log("[api/audition] received body:", body);
+    const { name, age, email, phone, genre, pr } = body;
 
     if (!name || !age || !email || !genre || !pr) {
       return NextResponse.json({ error: "必須項目が未入力です" }, { status: 400 });
     }
+
+    const resend = new Resend(apiKey);
 
     const { error } = await resend.emails.send({
       from: FROM,
@@ -48,13 +58,15 @@ export async function POST(request: Request) {
     });
 
     if (error) {
-      console.error("[api/audition] Resend error:", error);
+      console.error("[api/audition] Resend error:", JSON.stringify(error));
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
+    console.log("[api/audition] email sent successfully");
     return NextResponse.json({ success: true });
   } catch (err) {
-    console.error("[api/audition] exception:", err);
+    console.error("[api/audition] exception:", err instanceof Error ? err.message : err);
+    console.error("[api/audition] stack:", err instanceof Error ? err.stack : "");
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
