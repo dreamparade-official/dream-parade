@@ -13,11 +13,6 @@ export const SITE = {
   company: "HC Co., Ltd.",
   address: "",
   email: "",
-
-  formspree: {
-    contact: "https://formspree.io/f/xaqzzwzb",
-    audition: "https://formspree.io/f/mqeoozod",
-  },
 } as const;
 
 // --- ナビゲーション ---

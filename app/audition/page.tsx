@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { SITE, AUDITION, CATEGORY_LABELS } from "@/lib/constants";
+import { AUDITION, CATEGORY_LABELS } from "@/lib/constants";
 import type { TalentCategory } from "@/lib/constants";
 
 // ────────────────────────────────
@@ -62,13 +62,25 @@ function AuditionForm() {
     e.preventDefault();
     setStatus("loading");
     try {
-      const res = await fetch(SITE.formspree.audition, {
+      const fd = new FormData(e.currentTarget);
+      const res = await fetch("/api/audition", {
         method: "POST",
-        body: new FormData(e.currentTarget),
-        headers: { Accept: "application/json" },
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name:  fd.get("name"),
+          age:   fd.get("age"),
+          email: fd.get("email"),
+          phone: fd.get("phone"),
+          genre: fd.get("genre"),
+          pr:    fd.get("pr"),
+        }),
       });
-      setStatus(res.ok ? "success" : "error");
-      if (res.ok) formRef.current?.reset();
+      if (res.ok) {
+        setStatus("success");
+        formRef.current?.reset();
+      } else {
+        setStatus("error");
+      }
     } catch {
       setStatus("error");
     }

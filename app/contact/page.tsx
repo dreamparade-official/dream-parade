@@ -2,7 +2,7 @@
 
 import { useState, useRef, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { SITE, TALENTS } from "@/lib/constants";
+import { TALENTS } from "@/lib/constants";
 
 function ContactForm() {
   const searchParams  = useSearchParams();
@@ -15,13 +15,24 @@ function ContactForm() {
     e.preventDefault();
     setStatus("loading");
     try {
-      const res = await fetch(SITE.formspree.contact, {
+      const fd = new FormData(e.currentTarget);
+      const res = await fetch("/api/contact", {
         method: "POST",
-        body: new FormData(e.currentTarget),
-        headers: { Accept: "application/json" },
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          company: fd.get("company"),
+          name:    fd.get("name"),
+          email:   fd.get("email"),
+          talent:  fd.get("talent"),
+          message: fd.get("message"),
+        }),
       });
-      setStatus(res.ok ? "success" : "error");
-      if (res.ok) formRef.current?.reset();
+      if (res.ok) {
+        setStatus("success");
+        formRef.current?.reset();
+      } else {
+        setStatus("error");
+      }
     } catch {
       setStatus("error");
     }
