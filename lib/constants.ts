@@ -14,12 +14,10 @@ export const SITE = {
   address: "",
   email: "",
 
-  // Formspree のフォームIDをここに入力してください
-  // https://formspree.io でアカウント作成後に取得できます
-formspree: {
-  contact: "https://formspree.io/f/xaqzzwzb",
-  audition: "https://formspree.io/f/mqeoozod",
-},
+  formspree: {
+    contact: "https://formspree.io/f/xaqzzwzb",
+    audition: "https://formspree.io/f/mqeoozod",
+  },
 } as const;
 
 // --- ナビゲーション ---

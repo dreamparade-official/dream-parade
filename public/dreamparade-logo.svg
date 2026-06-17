@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 400 130"
+  width="400"
+  height="130"
+>
+  <!--
+    DreamParade ロゴ
+    - DP シンボルマーク（赤 #CC0000）
+    - DREAM / PARADE 2段テキスト
+    - フォント: Arial Black / Impact（システムフォント）
+    - 背景: 透明
+  -->
+
+  <!-- DP シンボルマーク (viewBox 0 0 52 60 → 92×106px にスケーリング) -->
+  <svg x="0" y="12" width="92" height="106" viewBox="0 0 52 60">
+    <path
+      fill-rule="evenodd"
+      d="M 1,1 L 13,1 C 56,1 56,59 13,59 L 1,59 Z M 13,8 C 38,8 38,32 13,32 Z"
+      fill="#CC0000"
+    />
+  </svg>
+
+  <!-- DREAM (ダークグレー) -->
+  <text
+    x="112"
+    y="47"
+    font-family="'Arial Black', Impact, 'Helvetica Neue', sans-serif"
+    font-weight="900"
+    font-size="38"
+    letter-spacing="7"
+    fill="#0f0f0f"
+  >DREAM</text>
+
+  <!-- PARADE (赤) -->
+  <text
+    x="112"
+    y="100"
+    font-family="'Arial Black', Impact, 'Helvetica Neue', sans-serif"
+    font-weight="900"
+    font-size="50"
+    letter-spacing="9"
+    fill="#CC0000"
+  >PARADE</text>
+
+</svg>
