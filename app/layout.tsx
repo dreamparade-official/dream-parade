@@ -26,7 +26,9 @@ export const metadata: Metadata = {
     template: `%s | ${SITE.name}`,
   },
   description: SITE.description,
-  keywords: ["DreamParade", "HC Co., Ltd.", "芸能事務所", "タレント", "お笑い", "俳優", "アイドル", "オーディション"],
+  keywords: [
+    "DreamParade,ドリームパレード,どりーむぱれーど,HC Co., Ltd.,芸能事務所,タレント,お笑い,俳優,アイドル,オーディション,芸人,漫才,イベントMC",
+  ],
   icons: {
     icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
   },
@@ -40,7 +42,11 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="ja" className={`${montserrat.variable} ${noto.variable}`}>
       <body>
